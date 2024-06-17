@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 )
 public interface FindAddressByZipCodeClient {
 
+    //essa anotacao nao expoe um endpoint, ela esta mapeando uma chamada get para uma api externa
     @GetMapping("/{zipCode}")
     AddressResponse find(@PathVariable("zipCode") String zipCode);
 }

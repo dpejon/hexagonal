@@ -7,6 +7,7 @@ Na arquitetura hexagonal, separamos a regra de negócio de todo o resto. No paco
 ## Estrutura do Projeto
 
 ### `application`
+Dentro do pacote `application` trabalharemos toda nossa regra que negócio isolada de qualquer framework ou conexão externa.
 - **`application.core.domain`**: Contém os objetos da regra de negócio (entidades, objetos de valor).
 - **`application.core.usecase`**: Contém as classes com as regras de negócio. Cada classe representa um caso de uso (por exemplo, `InserCustomerUseCase`).
 - **`application.ports`**:
@@ -15,6 +16,8 @@ Na arquitetura hexagonal, separamos a regra de negócio de todo o resto. No paco
 
 ### `adapters`
 Dentro do pacote `adapters`, podemos usar os frameworks que preferirmos. Nessa parte também ficará efetivamente toda a conexão com a parte externa da app, consumindo URLs, bancos de dados e expondo endpoints.
+- **`adapters.out`**: Implementacões das interfaces definidas pelos adapdaores em  **`application.ports.out`**
+- **`adapters.in`**: Implementacões das interfaces definidas pelos adapdaores em  **`application.ports.in`**
 
 ## Benefícios da Arquitetura Hexagonal
 
