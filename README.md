@@ -20,6 +20,17 @@ Dentro do pacote `adapters`, podemos usar os frameworks que preferirmos. Nessa p
     - **`adapters.out.client`**: Clientes HTTP para consumir APIs RESTful de outros serviços.
     - **`adapters.out.repository`**: Classes e interfaces para conexão com o banco de dados.
     - **`adapters.out.repository.entity`**: Entidades usadas para a persistência no banco de dados. Mesmo que tenhamos classes idênticas na regra de negócio, não devemos usá-las diretamente. Em vez disso, devemos criar classes específicas neste pacote para a conexão com o banco de dados e utilizar anotações e frameworks necessários.
+    - **`adapters.out.repository.mapper`**: ficará interfaces mappers que convertem o objeto que vem da regra de negócio para o objeto Entity
+
+      - Um exemplo de interface mapper:
+        ```java
+        @Mapper(componentModel =  "spring")
+        public interface CustomerEntityMapper {
+        
+            CustomerEntity toCustomerEntity(Customer customer);
+        }
+        ```
+
 - **`adapters.in`**: Implementações das interfaces definidas pelos adaptadores em **`application.ports.in`**.
 
 ## Benefícios da Arquitetura Hexagonal
