@@ -7,7 +7,7 @@ Na arquitetura hexagonal, separamos a regra de negócio de todo o resto. No paco
 ## Estrutura do Projeto
 
 ### `application`
-Dentro do pacote `application` trabalharemos toda nossa regra que negócio isolada de qualquer framework ou conexão externa.
+Dentro do pacote `application` trabalharemos toda a nossa regra de negócio isolada de qualquer framework ou conexão externa.
 - **`application.core.domain`**: Contém os objetos da regra de negócio (entidades, objetos de valor).
 - **`application.core.usecase`**: Contém as classes com as regras de negócio. Cada classe representa um caso de uso (por exemplo, `InserCustomerUseCase`).
 - **`application.ports`**:
@@ -16,8 +16,11 @@ Dentro do pacote `application` trabalharemos toda nossa regra que negócio isola
 
 ### `adapters`
 Dentro do pacote `adapters`, podemos usar os frameworks que preferirmos. Nessa parte também ficará efetivamente toda a conexão com a parte externa da app, consumindo URLs, bancos de dados e expondo endpoints.
-- **`adapters.out`**: Implementacões das interfaces definidas pelos adapdaores em  **`application.ports.out`**
-- **`adapters.in`**: Implementacões das interfaces definidas pelos adapdaores em  **`application.ports.in`**
+- **`adapters.out`**: Implementações das interfaces definidas pelos adaptadores em **`application.ports.out`**.
+    - **`adapters.out.client`**: Clientes HTTP para consumir APIs RESTful de outros serviços.
+    - **`adapters.out.repository`**: Classes e interfaces para conexão com o banco de dados.
+    - **`adapters.out.repository.entity`**: Entidades usadas para a persistência no banco de dados. Mesmo que tenhamos classes idênticas na regra de negócio, não devemos usá-las diretamente. Em vez disso, devemos criar classes específicas neste pacote para a conexão com o banco de dados e utilizar anotações e frameworks necessários.
+- **`adapters.in`**: Implementações das interfaces definidas pelos adaptadores em **`application.ports.in`**.
 
 ## Benefícios da Arquitetura Hexagonal
 
@@ -34,18 +37,19 @@ Dentro do pacote `adapters`, podemos usar os frameworks que preferirmos. Nessa p
 ## Como Executar
 
 1. Clone o repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    ```
+
+bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+
 2. Navegue até o diretório do projeto:
-    ```bash
-    cd seu-repositorio
-    ```
+
+bash
+cd seu-repositorio
+
 3. Execute o projeto usando Gradle:
-    ```bash
-    ./gradlew bootRun
-    ```
+
+bash
+./gradlew bootRun
+
 
 ---
-
-Esse README fornece uma visão geral clara da arquitetura e estrutura do seu projeto, ajudando novos desenvolvedores a entenderem rapidamente como ele está organizado e como podem começar a trabalhar com ele.
